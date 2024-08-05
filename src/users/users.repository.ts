@@ -7,6 +7,14 @@ import { InjectModel } from '@nestjs/mongoose';
 export class UsersRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
+  async findByName(name: string): Promise<UserDocument> {
+    return this.userModel
+      .findOne({
+        name,
+      })
+      .exec();
+  }
+
   async create(data: User): Promise<UserDocument> {
     const createdCat = new this.userModel(data);
     return createdCat.save();
