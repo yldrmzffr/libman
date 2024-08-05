@@ -6,8 +6,10 @@ import {
   ConfigManagerModule,
   ConfigManagerService,
 } from '../commons/config-manager';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { config } from '../commons/config';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +23,14 @@ import { config } from '../commons/config';
       }),
       inject: [ConfigManagerService],
     }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigManagerModule],
+      useFactory: async (configManager) => ({
+        uri: configManager.getAsStringOrThrow('mongoDbUri'),
+      }),
+      inject: [ConfigManagerService],
+    }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

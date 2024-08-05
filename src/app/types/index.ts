@@ -1,1 +1,1 @@
-export { HealthResponse } from './health-response.type';
+export { HealthResponse } from './response/health-response.type';
