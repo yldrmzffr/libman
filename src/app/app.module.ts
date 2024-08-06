@@ -10,6 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { config } from '../commons/config';
 import { UsersModule } from '../users/users.module';
+import { BooksModule } from '../books/books.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UsersModule } from '../users/users.module';
       inject: [ConfigManagerService],
     }),
     UsersModule,
+    BooksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
