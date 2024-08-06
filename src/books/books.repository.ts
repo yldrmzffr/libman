@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Book, BookDocument } from './schemas';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Book, BookDocument } from './schemas';
 import { CreateBookDto } from './dto';
 
 @Injectable()
@@ -23,5 +23,13 @@ export class BooksRepository {
         name,
       })
       .exec();
+  }
+
+  async findById(id: string): Promise<BookDocument> {
+    return this.bookModel.findById(id).exec();
+  }
+
+  async findByIds(ids: string[]): Promise<BookDocument[]> {
+    return this.bookModel.find({ _id: { $in: ids } }).exec();
   }
 }

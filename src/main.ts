@@ -3,6 +3,7 @@ import { AppModule } from './app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { Logger } from 'nestjs-pino';
 import { ValidationPipe } from '@nestjs/common';
+import { CommonExceptionFilter } from './commons/filters/common-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
@@ -11,6 +12,7 @@ async function bootstrap() {
 
   app.useLogger(logger);
 
+  app.useGlobalFilters(new CommonExceptionFilter());
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -27,12 +29,14 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, document);
+  SwaggerModule.setup('docs', app, document);
 
-  await app.listen(8080);
+  const port = process.env.PORT || 3000;
 
-  logger.log('Application is running on: http://localhost:8080');
-  logger.log('Swagger is running on: http://localhost:8080/doc');
+  await app.listen(port);
+
+  logger.log(`Application is running on: http://localhost:${port}`);
+  logger.log(`Swagger is running on: http://localhost:${port}/docs`);
 }
 
 bootstrap();

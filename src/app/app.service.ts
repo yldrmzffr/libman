@@ -4,8 +4,6 @@ import { LogMe } from '../commons/decorators';
 
 @Injectable()
 export class AppService {
-  logger = new Logger(AppService.name);
-
   @LogMe()
   getHealth(): HealthResponse {
     return {

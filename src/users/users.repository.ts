@@ -24,4 +24,8 @@ export class UsersRepository {
   async getAll(): Promise<UserDocument[]> {
     return this.userModel.find().exec();
   }
+
+  async findById(id: string): Promise<UserDocument> {
+    return this.userModel.findById(id).exec();
+  }
 }

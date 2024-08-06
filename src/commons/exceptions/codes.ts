@@ -11,4 +11,9 @@ export const codes = {
   bookAlreadyExists: 2000,
   bookNotFound: 2001,
   //! Book exceptions codes end
+
+  //! Borrow exceptions codes start from 3000 to 3999
+  bookIsNotAvailable: 3000,
+  borrowNotFound: 3001,
+  //! Borrow exceptions codes end
 };

@@ -1,7 +1,7 @@
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateBookDto } from './dto';
-import { BookListResponseDto } from './types';
+import { BookListResponseDto, BookWithScoreResponseDto } from './types';
 import { BooksService } from './books.service';
 
 @ApiTags('books')
@@ -28,7 +28,23 @@ export class BooksController {
     description: 'All books',
     type: [BookListResponseDto],
   })
-  async findAll() {
+  async findAll(): Promise<BookListResponseDto[]> {
     return this.booksService.getBookList();
+  }
+
+  @Get(':bookId')
+  @ApiOperation({
+    description: 'Get book by id',
+    summary: 'Get book by id',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Book with score',
+    type: BookWithScoreResponseDto,
+  })
+  async findById(
+    @Param('bookId') bookId: string,
+  ): Promise<BookWithScoreResponseDto> {
+    return this.booksService.getBookWithScore(bookId);
   }
 }

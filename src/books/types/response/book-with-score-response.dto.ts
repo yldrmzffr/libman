@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class BookListResponseDto {
+export class BookWithScoreResponseDto {
   @ApiProperty({
     type: String,
     description: 'Book ID',
@@ -14,4 +14,11 @@ export class BookListResponseDto {
     example: 'The Martian',
   })
   name: string;
+
+  @ApiProperty({
+    type: Number,
+    description: 'Book score',
+    example: 4.5,
+  })
+  score: number;
 }
