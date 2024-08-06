@@ -1,73 +1,73 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Library Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a library management system in Node.js. It manages users, books, and borrowed books. The project has different modules and uses MongoDB database.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## API Documentation and Service URL
 
-## Description
+We use Swagger for API documentation and testing. You can access Swagger UI at this URL after starting the project:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+    http://localhost:3000/docs
 
-## Installation
+This URL shows all endpoints and parameters. The project runs on port `3000` by default. You can change the port with `PORT` environment variable.
 
-```bash
-$ npm install
-```
+## Setup
 
-## Running the app
+Follow these steps to set up and run the project locally:
 
-```bash
-# development
-$ npm run start
+### Requirements
 
-# watch mode
-$ npm run start:dev
+- You need Node.js installed.
+- You need MongoDB running locally or a MongoDB connection URI.
 
-# production mode
-$ npm run start:prod
-```
+### Environment Variables
 
-## Test
+Before running the application, set up the following environment variables. You can define these in a `.env` file in your project root:
 
-```bash
-# unit tests
-$ npm run test
+- `NODE_ENV`: The environment of your application (`dev`, `prod`, etc.).
+- `LOG_LEVEL`: The level of logging (`debug`, `info`, `error`).
+- `MONGODB_URI`: Your MongoDB connection URI.
+- `PORT`: (Optional) The port on which to run the application (default is `3000`).
 
-# e2e tests
-$ npm run test:e2e
+### Installing Dependencies
 
-# test coverage
-$ npm run test:cov
-```
+Run this command in the project directory to install necessary packages:
 
-## Support
+    npm install
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Running the Application
 
-## Stay in touch
+Start the application with this command:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    npm start
 
-## License
+## File Structure
 
-Nest is [MIT licensed](LICENSE).
+The project has these main folders and files:
+
+- `src`: The main folder for source code.
+    - `app`: Contains core components of the application.
+    - `commons`: Contains shared modules and utilities.
+    - `books`, `users`, `borrows`: Modules with specific functions.
+
+## Modules and Their Functions
+
+### Users Module
+- **User Management**: Manages user registration, login, updating user information, and listing users.
+
+### Books Module
+- **Book Management**: Handles adding, updating, deleting, and listing books. Also provides viewing book details.
+
+### Borrows Module
+- **Borrowing Operations**: Tracks borrowing and returning books by users. Updates the status of borrowed books and keeps a history of borrowed items.
+
+## Future Improvements
+
+Here are some potential enhancements to improve the project:
+
+- **Refactor Service Layer**: Add layers like a Logic Formatter to clean up the service layer.
+- **Enhance Local Development Logs**: Make logs more readable for local development environments.
+- **Write Tests**: Implement tests to ensure code reliability and functionality.
+- **Separate Scores Module**: Extract the scoring system into a separate module for greater flexibility and easier management.
+- **Docker Integration**: Containerize the application using Docker to simplify deployment and ensure consistency across different environments.
+- **Continuous Integration/Continuous Deployment (CI/CD) Setup**: Establish a CI/CD pipeline to automate testing and deployment processes, which helps in maintaining code quality and speed up the release cycle.
+- **Implement Caching System**: Add a caching system to store scores and calculations, which can enhance performance by reducing the load on the database and speeding up response times for frequently accessed data.
